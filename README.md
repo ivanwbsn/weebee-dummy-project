@@ -1,82 +1,98 @@
-# Welcome to DUA ARAH
+# E-Commerce React Application
 
-A project developed by Ivan Wibisono to for educational purposes from Revou milestone project. The project is focused on event management because i used to work on it. all the assets inside all for educational purposes, no AI image.
-
-# Domain
-
-https://project-weebee.site/
-
-# Table of Content
-- [features](#features)
-- [Technologies Used](#technologies-used)
-- [Sections Overview](#sections-overview)
-- [Deployment Process](#deployment-process)
+## Project Overview
+This project is an e-commerce web application built using React, TypeScript, Vite, and Tailwind CSS. It features user authentication, product listings, a shopping cart, and category filtering. The application communicates with an external API for user and product management.
 
 ## Features
+- **User Authentication**:
+  - Register new users via the [POST] `https://api.escuelajs.co/api/v1/users`
+  - Login users via the [POST] `https://api.escuelajs.co/api/v1/auth/login`
 
-- responsive design
-- sticky navbar
-- hero section
-- using grid for products and applying asymmetrical grid in gallery
-- form
-- footer
+- **Product Listings**:
+  - Fetch products from the API at [GET] `https://api.escuelajs.co/api/v1/products`
+  - Filter products by category
 
-## Technologies Used
-- HTML5
-- Tailwind
+- **Shopping Cart**:
+  - Add products to the cart
+  - Update product quantities in the cart
+  - Remove products from the cart
 
-## Sections Overview
+- **Responsive Design**:
+  - Styled with Tailwind CSS for a mobile-friendly and responsive layout
 
-### 1. Responsive design
-- responsive design on every aspect for mobile and laptop/pc
+## Installation
 
-### 2. Sticky Navbar
-- sticky navbar used with black background, to match the pallete i used hover red on every button option on navbar
+### Prerequisites
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (version 14 or later)
+- npm (comes with Node.js) or yarn
 
-### 3. hero section
-- big hero section with responsive fullscreen height. theres a company name and slogan also button with hover matching our color pallete
-![hero-section](/assets/readme/hero-section.png)
+### Steps
+1. Install dependencies:
+   ```bash
+   npm install
+2. Start the development server:
+   ```bash
+   npm run dev
+3. Open the application in your browser at `http://localhost:5173`.
 
-### 4. Grid product and Asymmetrical grid
-- using simple grid with caption and some hover to extend the information on every container
-![grid-products](/assets/readme/grid-products.png)
+## Folder Structure
+```
+├── src
+│   ├── components
+│   │   ├── Cart.tsx         # Shopping cart page
+│   │   ├── Login.tsx        # User login page
+│   │   ├── Navbar.tsx       # Navigation bar
+│   │   ├── Sidebar.tsx      # Category filtering sidebar
+│   │   ├── ProductCard.tsx  # Individual product cards
+│   │   ├── Register.tsx     # User registration page
+│   ├── pages
+│   │   ├── Home.tsx         # Product listing and filtering
+│   │   ├── ProductDetail.tsx# Detailed product view
+│   ├── App.tsx              # Main application file
+│   └── main.tsx             # Entry point
+├── public                   # Static assets
+├── package.json             # Project dependencies
+└── README.md                # Project documentation
+```
 
-- i also applying some asymmetrical in gallery section with our recent projects
-![projects](/assets/readme/projects.png)
+## API Endpoints
+### Products
+- **Get All Products**: `https://api.escuelajs.co/api/v1/products`
 
-### 5. form
-- just simple input and button for subscribing to our upcoming events
+### Users
+- **Get All Users**: `https://api.escuelajs.co/api/v1/users`
+- **Register User**: `https://api.escuelajs.co/api/v1/users`
 
-### 6. footer
-- contain quick links and connecting to our social media
+### Authentication
+- **Login User**: `https://api.escuelajs.co/api/v1/auth/login`
 
+## Scripts
+- **Start Development Server**:
+  ```bash
+  npm run dev
+  ```
+- **Build for Production**:
+  ```bash
+  npm run build
+  ```
+- **Preview Production Build**:
+  ```bash
+  npm run preview
+  ```
 
-## Deployment Process
+## Dependencies
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router DOM
+- React Icons
 
-### 1. Connecting github to Netlify
-- Log in with Github
+## Future Enhancements
+- Add payment integration
+- Add user profile management
+- Implement server-side rendering for SEO optimization
 
-- Import project you want to deploy, if you havent import any project just **add new site** and **import existing project**
-![add-site](/assets/readme/add-site.png)
-
-- Then choose a name then deploy it.
-![choose-site](/assets/readme/choose-site.png)
-
-
-### 2. Setting custom domain
-- Log in on niagahoster or sign up i you havent
-
-- Choose custom domain that available
-![add-domain](/assets/readme/choose-domain.png)
-
-- Edit nameserver and set DNS
-
-### 3. Connect to custom domain
-- set up custom domain by clicking manage button
-![project-weebee-site](/assets/readme/project-weebee-site.png)
-
-- put name server and input the dns manually
-![edit-dns](/assets/readme/edit-dns.png)
-
-- wait for maximum of 24hrs for your site to be deployed and voila! its all done.
-![done](/assets/readme/done.png)
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
