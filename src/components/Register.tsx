@@ -15,6 +15,7 @@ const Register: React.FC = () => {
   const [avatar, setAvatar] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Fetch users on mount
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/users/')
       .then((response) => response.json())
@@ -22,9 +23,11 @@ const Register: React.FC = () => {
       .catch((error) => console.error('Error fetching users:', error));
   }, []);
 
+  // Handle form submission
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    // Check if email is already registered
     const existingUser = users.find((user) => user.email === email);
     if (existingUser) {
       setErrorMessage('This email is already registered.');
@@ -32,13 +35,14 @@ const Register: React.FC = () => {
     }
 
     const newUser = {
-      email,
-      name,
-      password,
-      avatar,
+      email: email.trim(),
+      name: name.trim(),
+      password: password.trim(),
+      avatar: avatar.trim() || 'https://default-avatar-url.com', // Provide a default avatar URL if none provided
     };
 
     try {
+      // Send POST request to register the new user
       const response = await fetch('https://api.escuelajs.co/api/v1/users/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -48,12 +52,15 @@ const Register: React.FC = () => {
       if (response.ok) {
         const createdUser = await response.json();
         alert(`User registered successfully: ${createdUser.name}`);
+        // Reset form after successful registration
         setEmail('');
         setName('');
         setPassword('');
         setAvatar('');
         setErrorMessage('');
       } else {
+        const errorData = await response.json();
+        console.error('Error response:', errorData);
         setErrorMessage('Failed to register. Please try again.');
       }
     } catch (error) {
@@ -96,10 +103,7 @@ const Register: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-gray-700 font-medium mb-1"
-          >
+          <label htmlFor="password" className="block text-gray-700 font-medium mb-1">
             Password
           </label>
           <input
@@ -111,22 +115,18 @@ const Register: React.FC = () => {
             className="w-full border-gray-300 rounded-md p-2"
           />
         </div>
-        {/* <div className="mb-4">
-          <label
-            htmlFor="avatar"
-            className="block text-gray-700 font-medium mb-1"
-          >
-            Avatar URL
+        <div className="mb-4">
+          <label htmlFor="avatar" className="block text-gray-700 font-medium mb-1">
+            Avatar URL (Optional)
           </label>
           <input
             type="text"
             id="avatar"
             value={avatar}
             onChange={(e) => setAvatar(e.target.value)}
-            required
             className="w-full border-gray-300 rounded-md p-2"
           />
-        </div> */}
+        </div>
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
