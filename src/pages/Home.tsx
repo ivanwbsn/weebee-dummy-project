@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import ProductCard from '../components/ProductCard';
+import { useNavigate } from 'react-router-dom';
 
 interface Product {
   id: string;
@@ -20,6 +21,7 @@ const Home: React.FC<{ onAddToCart: (product: Product) => void }> = ({ onAddToCa
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([{ id: 'all', name: 'All' }]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('https://api.escuelajs.co/api/v1/products')
@@ -54,6 +56,10 @@ const Home: React.FC<{ onAddToCart: (product: Product) => void }> = ({ onAddToCa
     }
   };
 
+  const handleProductClick = (id: string) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <div className="flex bg-gray-100 min-h-screen">
       <Sidebar categories={categories} onCategorySelect={handleCategorySelect} />
@@ -68,6 +74,7 @@ const Home: React.FC<{ onAddToCart: (product: Product) => void }> = ({ onAddToCa
                 image={product.images[0]}
                 time="Recently Added"
                 onAddToCart={() => onAddToCart({ ...product, quantity: 1 })}
+                onProductClick={() => handleProductClick(product.id)}
               />
             </div>
           ))}

@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Cart from './components/Cart';
 import ProductDetail from './pages/ProductDetails';
+
 interface Product {
   id: string;
   title: string;
@@ -47,7 +48,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="min-h-screen bg-gray-100">
-        <Navbar />
+        <Navbar cartCount={cart.length} />
         <Routes>
           <Route
             path="/"
